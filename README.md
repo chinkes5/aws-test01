@@ -11,9 +11,11 @@ There are several terraform files to describe each kind of resource with a varia
 
 ## Step 0
 Things I had to do to get this so it would work-
-1 Get AWS account
-2 Make IAM user and save key and secret
-3 Download AWS CLI and Terraform
-4 Import-Module aws PowerShell
-5 Run configuration tool to get my secret loaded into AWS CLI
-6 Add Terraform to Windows PATH
+1. Get AWS account
+1. [Make IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) and save key and secret
+1. Download [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html#cliv2-windows-install) and [Terraform](https://www.terraform.io/downloads.html)
+1. [Import-Module](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up-windows.html#ps-installing-awswindowspowershell) aws PowerShell
+1. Run [configuration tool](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html#cli-configure-files-methods) to get my secret loaded into AWS CLI
+1. [Add Terraform](https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows) to Windows PATH
+
+After I did all that, and probably the PowerShell stuff isn't needed, I'm able to run the code in this repo against AWS and make stuff!

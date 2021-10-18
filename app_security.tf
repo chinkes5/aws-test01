@@ -1,6 +1,6 @@
 resource "aws_security_group" "ingress-all-test" {
   name   = "allow-all-sg"
-  vpc_id = aws_vpc.test-env.id
+  vpc_id = aws_vpc.vpc.id
   ingress {
     cidr_blocks = [
       "0.0.0.0/0"
