@@ -8,6 +8,8 @@ There are several terraform files to describe each kind of resource with a varia
 * [Hashicorp Getting Started](https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/aws-get-started)
 * [ec2 with ssh access](https://medium.com/@hmalgewatta/setting-up-an-aws-ec2-instance-with-ssh-access-using-terraform-c336c812322f)
 * [vpc in terraform](https://jaffarshaik.medium.com/implementing-vpc-architecture-using-terraform-3de6c42d7646)
+* [public and private subnets in terraform](https://medium.com/geekculture/how-to-manage-public-and-private-subnets-in-aws-with-terraform-69c272003c81)
+* [terraform and cidrs](http://blog.itsjustcode.net/blog/2017/11/18/terraform-cidrsubnet-deconstructed/)
 
 ## Step 0
 Things I had to do to get this so it would work-
