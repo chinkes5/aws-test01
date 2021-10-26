@@ -5,7 +5,7 @@ variable "region" {
   description = "which region to work in"
   default     = "us-west-2"
 }
-variable "ami_name" {
+variable "server_name" {
   description = "Value of the Name tag for the EC2 instance"
   type        = string
   default     = "app_01"
@@ -23,7 +23,7 @@ variable "ami_id" {
 variable "ami_key_name" {
   description = "The pem key for the EC2 instance SSH access"
   type        = string
-  default     = "Chinkes-Food_02.pem"
+  default     = "Chinkes-Food_02"
 }
 variable "cidr_ranges" {
   description = "the cidr ranges for vpc use, we'll use cidrsubnet command to break down the subnets used for different purposes"
