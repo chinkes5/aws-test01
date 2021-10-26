@@ -9,5 +9,5 @@ resource "aws_instance" "app_server" {
     CreatedBy = var.userName
   }
 
-  subnet_id = aws_subnet.privatesubnet.id
+  subnet_id = aws_subnet.privatesubnet1.id #how to define where this is?
 }
