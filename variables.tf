@@ -36,27 +36,6 @@ variable "cidr_ranges" {
     public  = "10.0.200.0/20"
   }
 }
-variable "subnet_newbit" {
-  description = "newbit for each subnet to use with cidrsubnet"
-  type        = map(any)
-  default = {
-    main    = "0"
-    app     = "9"
-    web     = "6"
-    private = "5"
-    public  = "5"
-  }
-}
-variable "environment_netnum" {
-  description = "netnum for for each subnet use with cidrsubnet"
-  type        = map(any)
-  default = {
-    dev  = "1"
-    qa   = "2"
-    uat  = "3"
-    prod = "4"
-  }
-}
 variable "AZ1" {
   description = "The availability zones used, #1"
   default     = "us-west-2a"
@@ -77,4 +56,22 @@ variable "IssuePublicIP" {
   description = "boolean to assign public IP to subnet devices or not"
   default     = false
 
+}
+
+variable "server_details" {
+  server1 = {
+    name           = "bastion_server",
+    security_group = aws_security_group.ingress-all-test.id,
+    subnets        = module.vpc.public_subnets[0]
+  }
+  server2 = {
+    name           = "app_server",
+    security_group = aws_security_group.ingress-internal.id,
+    subnets        = module.vpc.private_subnets[0]
+  }
+  server3 = {
+    name           = "web_server",
+    security_group = aws_security_group.ingress-web.id,
+    subnets        = module.vpc.public_subnets[1]
+  }
 }

@@ -1,39 +1,30 @@
-resource "aws_instance" "bastion_server" {
-  ami             = var.ami_id
-  instance_type   = var.instance_type
-  key_name        = var.ami_key_name
-  security_groups = [aws_security_group.ingress-all-test.id]
-
-  tags = {
-    Name      = "bastion_server"
-    CreatedBy = var.userName
-  }
-
-  subnet_id = module.vpc.public_subnets[0] #how to define where this is?
+data "local_file" "json_config" {
+  path = "/varables.tf.json"
 }
-resource "aws_instance" "app_server" {
-  ami             = var.ami_id
-  instance_type   = var.instance_type
-  key_name        = var.ami_key_name
-  security_groups = [aws_security_group.ingress-internal.id]
 
-  tags = {
-    Name      = "app_server"
-    CreatedBy = var.userName
-  }
-
-  subnet_id = module.vpc.private_subnets[0] #how to define where this is?
+locals {
+  server = jsondecode(data.local_file.json_config.server1)
 }
-resource "aws_instance" "web_server" {
-  ami             = var.ami_id
-  instance_type   = var.instance_type
-  key_name        = var.ami_key_name
-  security_groups = [aws_security_group.ingress-web.id]
+
+module "ec2_instance" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 3.0"
+
+  #fileexists("variables.tf.json") ? file("variables.tf.json") : local.default_content
+  for_each = toset(["server1", "server2", "server3"])
+
+  name = "instance-${each.value.name}"
+
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  key_name               = var.ami_key_name
+  monitoring             = true
+  vpc_security_group_ids = [each.value.security_group]
+  subnet_id              = each.value.subnet
 
   tags = {
-    Name      = "web_server"
-    CreatedBy = var.userName
+    Terraform   = "true"
+    Environment = "dev"
+    CreatedBy   = var.userName
   }
-
-  subnet_id = module.vpc.public_subnets[1] #how to define where this is?
 }
