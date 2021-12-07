@@ -1,8 +1,8 @@
 If ((Read-Host "Ready to start [y/n]") -eq "y") {
     terraform init
 
-    $response = Read-Host “Press I, P, A, D, or Q”
     do {
+        $response = Read-Host “Press I, P, A, D, or Q”
         switch ($response) {
             "i" {
                 Write-Output "Initiallizing (again?)..."
