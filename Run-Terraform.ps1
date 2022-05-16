@@ -19,17 +19,17 @@ If ((Read-Host "Ready to start [y/n]") -eq "y") {
             "d" {
                 Write-Output "Planning destroy..."
                 terraform plan -out plan.out -destroy
-                if((Read-Host "ready to destroy [y/n]") -eq "y"){
+                if((Read-Host "`u{1f622} ready to destroy [y/n]") -eq "y"){
                     Write-Output "Destroying..."
                     terraform apply "plan.out"
                 }
             }
             "q"{
-                Write-Output "All done!"
+                Write-Output "All done! `u{1f60e}"
                 break
             }
             Default {
-                Write-Output "Didn't undestand that, please try again"
+                Write-Output "`u{1f611} Didn't undestand that, please try again"
                 Write-Output "P = plan`nA = apply`nD = destroy (with verification)`nQ = quit"
             }
         }
