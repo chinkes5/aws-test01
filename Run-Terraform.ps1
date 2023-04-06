@@ -1,6 +1,7 @@
 If ((Read-Host "Ready to start [y/n]") -eq "y") {
-    terraform init
+    terraform init -input=false
 
+    $varFile = Read-Host "Path\Name of var-file, or blank if none"
     do {
         $response = Read-Host “Press I, P, A, D, or Q”
         switch ($response) {
@@ -10,21 +11,40 @@ If ((Read-Host "Ready to start [y/n]") -eq "y") {
             }
             "p" {
                 Write-Output "Running plan..."
-                terraform plan -out plan.out
+                if ([string]::IsNullOrEmpty($varFile)) {
+                    terraform plan -out plan.out
+                }
+                else {
+                    terraform plan -var-file $varFile -out plan.out
+                }
             }
             "a" {
                 Write-Output "Applying plan..."
-                terraform apply "plan.out"
+                if ([string]::IsNullOrEmpty($varFile)) {
+                    terraform apply "plan.out"
+                }
+                else {
+                    terraform apply -var-file $varFile "plan.out"
+                }
             }
             "d" {
                 Write-Output "Planning destroy..."
-                terraform plan -out plan.out -destroy
-                if((Read-Host "`u{1f622} ready to destroy [y/n]") -eq "y"){
+                if ([string]::IsNullOrEmpty($varFile)) {
+                    terraform plan -out plan.out -destroy
+                }
+                else {
+                    terraform plan -out plan.out -var-file $varFile -destroy
+                }
+                if ((Read-Host "`u{1f622} ready to destroy [y/n]") -eq "y") {
                     Write-Output "Destroying..."
                     terraform apply "plan.out"
                 }
             }
-            "q"{
+            "v" {
+                Write-Output "Validating Terraform"
+                terraform validate
+            }
+            "q" {
                 Write-Output "All done! `u{1f60e}"
                 break
             }
