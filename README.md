@@ -2,7 +2,8 @@
 Initial testing to use Terraform with AWS, to see what I can make from a few sources. I'm building this out while studying for AWS SysOps Associate exam.
 
 ## Structure and Use
-There are several terraform files to describe each kind of resource with a variable file to hold all the specific values used.
+There are several terraform files to describe each kind of resource with a variable file to hold all the specific values used. Here's a diagram of what I built:
+![Diagram of what the Terraform should build](/VPC_layout.png "VPC with bastion host, app and web servers")
 
 ## Source Material
 * [The French guy's class on SysOps](https://www.udemy.com/course/ultimate-aws-certified-sysops-administrator-associate)
