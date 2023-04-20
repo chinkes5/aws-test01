@@ -48,7 +48,7 @@ resource "aws_security_group" "ingress-web" {
   ]
 }
 resource "aws_security_group" "ingress-internal" {
-  name   = "allow-internal_ssh"
+  name   = "allow-internal-ssh"
   vpc_id = module.vpc.vpc_id
   ingress {
     security_groups = [aws_security_group.ingress-all-test.id]
