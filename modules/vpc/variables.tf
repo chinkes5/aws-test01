@@ -1,4 +1,4 @@
-variable "vpcName" {
+variable "vpc_name" {
   type        = string
   description = "Name of the VPC"
 }
@@ -9,17 +9,17 @@ variable "cidr_range" {
 }
 
 variable "azs" {
-  type        = string
+  type        = map(string)
   description = "Which AZ your VPC will be in"
 }
 
 variable "private_subnets" {
-  type        = string
+  type        = map(string)
   description = "Private Subnet CIDR"
 }
 
 variable "public_subnets" {
-  type        = string
+  type        = map(string)
   description = "Public Subnet CIDR"
 }
 
