@@ -16,6 +16,7 @@ module "security_group" {
       cidr_blocks = var.ingress_map["cidr_blocks"]
     },
   ]
+
   #   egress_cidr_blocks = var.egress_cidr
   #   egress_rules       = var.egress_rules
   egress_with_cidr_blocks = [

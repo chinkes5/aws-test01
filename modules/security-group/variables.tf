@@ -20,13 +20,13 @@ variable "sg_description" {
 
 variable "ingress_map" {
   description = "map of values to allow ingress, needing the following: to, from, protocol, description, cidr blocks"
-  type        = map(object({
-    to        = number
-    from      = number
-    protocol    = string
-    description = string
-    cidr_blocks = list
-    security_groups = list
+  type = map(object({
+    to              = number
+    from            = number
+    protocol        = string
+    description     = string
+    cidr_blocks     = list(string)
+    security_groups = list(string)
   }))
 }
 
@@ -42,12 +42,12 @@ variable "ingress_map" {
 
 variable "egress_map" {
   description = "map of values to allow egress, needing the following: to, from, protocol, description, cidr blocks"
-  type        = map(object({
-    to        = number
-    from      = number
-    protocol    = string
-    description = string
-    cidr_blocks = list
-    security_groups = list
+  type = map(object({
+    to              = number
+    from            = number
+    protocol        = string
+    description     = string
+    cidr_blocks     = list(string)
+    security_groups = list(string)
   }))
 }
