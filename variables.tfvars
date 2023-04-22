@@ -69,7 +69,7 @@ server_details= {
         ami_key_name="Chinkes-Food_02"
         IssuePublicIP=false
         security_group= ["allow_all_sg"]
-        subnets= module.vpc.public_subnets{0}
+        subnets= [module.vpc.public_subnets{0}]
     }
     server2= {
         server_name= "app_server"
@@ -78,7 +78,7 @@ server_details= {
         ami_key_name="Chinkes-Food_02"
         IssuePublicIP=false
         security_group= ["allow_internal_ssh"]
-        subnets= module.vpc.private_subnets{0}
+        subnets= [module.vpc.private_subnets{0}]
     }
     server3= {
         server_name= "web_server"
@@ -87,6 +87,6 @@ server_details= {
         ami_key_name="Chinkes-Food_02"
         IssuePublicIP=false
         security_group= ["allow_web","allow_internal_ssh"]
-        subnets= module.vpc.public_subnets{1}
+        subnets= [module.vpc.public_subnets{1}]
     }
 }

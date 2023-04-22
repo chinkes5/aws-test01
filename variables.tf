@@ -12,9 +12,9 @@ variable "cidr_ranges" {
 variable "vpc" {
   description = "Map of VPC details"
   type = map(object({
-    azs             = list
-    private_subnets = list
-    public_subnets  = list
+    azs             = list(string)
+    private_subnets = list(string)
+    public_subnets  = list(string)
   }))
 }
 
@@ -23,13 +23,13 @@ variable "sg_details" {
   type = map(object({
     name                    = string
     description             = string
-    ingress_cidr_blocks     = list
-    ingress_security_groups = list
+    ingress_cidr_blocks     = list(string)
+    ingress_security_groups = list(string)
     ingress_from_port       = number
     ingress_to_port         = number
     ingress_protocol        = string
-    egress_cidr_blocks      = list
-    egress_security_groups  = list
+    egress_cidr_blocks      = list(string)
+    egress_security_groups  = list(string)
     egress_from_port        = number
     egress_to_port          = number
     egress_protocol         = string
@@ -45,7 +45,7 @@ variable "server_details" {
     ami_id         = string
     ami_key_name   = string
     IssuePublicIP  = bool
-    security_group = map
-    subnets        = map
+    security_group = list(string)
+    subnets        = list(string)
   }))
 }

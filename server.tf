@@ -3,7 +3,7 @@ module "ec2_instance" {
 
   for_each = var.server_details
 
-  name = each.value.server_name
+  name                   = each.value.server_name
   ami                    = each.value.ami_id
   instance_type          = each.value.instance_type
   key_name               = each.value.ami_key_name
@@ -16,4 +16,10 @@ module "ec2_instance" {
     Environment = var.Env
     CreatedBy   = var.userName
   }
+
+    depends_on = [
+    module.vpc,
+    module.security-group
+  ]
+
 }
