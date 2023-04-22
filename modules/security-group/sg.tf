@@ -20,11 +20,11 @@ module "vote_service_sg" {
 #   egress_rules       = var.egress_rules
   egress_with_cidr_blocks = [
     {
-      from_port   = 10
-      to_port     = 20
-      protocol    = 6
-      description = "Service name"
-      cidr_blocks = "10.10.0.0/20"
+      from_port   = var.egress_map["from"]
+      to_port     = var.egress_map["to"]
+      protocol    = var.egress_map["protocol"]
+      description = var.egress_map["description"]
+      cidr_blocks = var.egress_map["cidr_blocks"]
     },
   ]
 
