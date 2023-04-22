@@ -2,21 +2,17 @@ module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
 
-  #fileexists("variables.tf.json") ? file("variables.tf.json") : local.default_content
-  for_each = toset(["server1", "server2", "server3"])
-
-  name = "instance-${each.value.name}"
-
+  name                   = var.ec2_name
+  description            = var.ec2_description
   ami                    = var.ami_id
   instance_type          = var.instance_type
-  key_name               = var.ami_key_name
   monitoring             = true
-  vpc_security_group_ids = [each.value.security_group]
-  subnet_id              = each.value.subnet
+  vpc_security_group_ids = var.security_group_ids
+  subnet_id              = var.subnet_id
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
+    Environment = var.Env
     CreatedBy   = var.userName
   }
 }

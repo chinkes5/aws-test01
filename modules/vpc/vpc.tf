@@ -14,5 +14,6 @@ module "vpc" {
   tags = {
     Terraform   = "true"
     Environment = var.Env
+    CreatedBy   = var.userName
   }
 }

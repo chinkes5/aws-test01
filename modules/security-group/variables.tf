@@ -26,7 +26,7 @@ variable "ingress_map" {
     "from"      = 80
     protocol    = "tcp"
     description = "default ingress on port 80, tcp, from anywhere"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = "0.0.0.0/0"
   }
 }
 
@@ -48,6 +48,6 @@ variable "egress_map" {
     "from"      = 80
     protocol    = "tcp"
     description = "default egress on port 80, tcp, to anywhere"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = "0.0.0.0/0"
   }
 }
