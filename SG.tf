@@ -1,5 +1,5 @@
 resource "aws_security_group" "ingress-all-test" {
-  name   = "allow-all-sg"
+  name   = "allow_all_sg"
   vpc_id = module.vpc.vpc_id
   ingress {
     cidr_blocks = [
@@ -21,7 +21,7 @@ resource "aws_security_group" "ingress-all-test" {
   ]
 }
 resource "aws_security_group" "ingress-web" {
-  name   = "allow-web"
+  name   = "allow_web"
   vpc_id = module.vpc.vpc_id
   ingress {
     cidr_blocks = [
@@ -48,7 +48,7 @@ resource "aws_security_group" "ingress-web" {
   ]
 }
 resource "aws_security_group" "ingress-internal" {
-  name   = "allow-internal_ssh"
+  name   = "allow_internal_ssh"
   vpc_id = module.vpc.vpc_id
   ingress {
     security_groups = [aws_security_group.ingress-all-test.id]

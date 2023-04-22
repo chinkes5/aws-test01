@@ -1,29 +1,19 @@
-data "local_file" "json_config" {
-  path = "/varables.tf.json"
-}
-
-locals {
-  server = jsondecode(data.local_file.json_config.server1)
-}
-
 module "ec2_instance" {
-  source  = "./modules/ec2"
+  source = "./modules/ec2"
 
-  #fileexists("variables.tf.json") ? file("variables.tf.json") : local.default_content
-  for_each = toset(["server1", "server2", "server3"])
+  for_each = var.server_details
 
-  name = "instance-${each.value.name}"
-
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
-  key_name               = var.ami_key_name
+  name = each.value.server_name
+  ami                    = each.value.ami_id
+  instance_type          = each.value.instance_type
+  key_name               = each.value.ami_key_name
   monitoring             = true
   vpc_security_group_ids = [each.value.security_group]
   subnet_id              = each.value.subnet
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
+    Environment = var.Env
     CreatedBy   = var.userName
   }
 }
