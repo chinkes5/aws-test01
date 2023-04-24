@@ -39,7 +39,6 @@ variable "sg_details" {
 variable "server_details" {
   description = "Map of all server details"
   type = map(object({
-    server_name    = string
     description    = string
     instance_type  = string
     ami_id         = string
