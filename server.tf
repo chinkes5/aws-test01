@@ -1,3 +1,7 @@
+data "aws_security_groups" "security_group_name" {
+  security_group_name = var.security_group_name
+}
+
 module "ec2_instance" {
   source = "./modules/ec2"
 
