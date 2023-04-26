@@ -3,11 +3,19 @@ If ((Read-Host "Ready to start [y/n]") -eq "y") {
 
     $varFile = Read-Host "Path\Name of var-file, or blank if none"
     do {
-        $response = Read-Host “Press I, P, A, D, or Q”
-        switch ($response) {
+        $response = Read-Host “Press I, V, F, P, A, D, or Q”
+        switch ($response.toLower()) {
             "i" {
-                Write-Output "Initiallizing (again?)..."
-                terraform init
+                Write-Output "Initiallizing with upgrade..."
+                terraform init -upgrade
+            }
+            "v" {
+                Write-Output "Validating Terraform..."
+                terraform validate
+            }
+            "f" {
+                Write-Output "Formatting all files and sub-folders..."
+                terraform fmt -recursive
             }
             "p" {
                 Write-Output "Running plan..."
@@ -39,10 +47,6 @@ If ((Read-Host "Ready to start [y/n]") -eq "y") {
                     Write-Output "Destroying..."
                     terraform apply "plan.out"
                 }
-            }
-            "v" {
-                Write-Output "Validating Terraform"
-                terraform validate
             }
             "q" {
                 Write-Output "All done! `u{1f60e}"

@@ -1,26 +1,7 @@
-variable "sg_map" {
-  description = "A map of security groups handed in via one object"
-  type = map(object({
-    name                    = string
-    description             = string
-    ingress_cidr_blocks     = list(string)
-    ingress_security_groups = list(string)
-    ingress_from_port       = number
-    ingress_to_port         = number
-    ingress_protocol        = string
-    egress_cidr_blocks      = list(string)
-    egress_security_groups  = list(string)
-    egress_from_port        = number
-    egress_to_port          = number
-    egress_protocol         = string
-  }))
-}
-
 module "security_group" {
   source = "terraform-aws-modules/security-group/aws"
 
-  for_each = toset()
-
+  # for_each = toset()
 
   name        = var.sg_name
   description = var.sg_description

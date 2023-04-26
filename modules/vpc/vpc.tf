@@ -1,5 +1,4 @@
-module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+resource "aws_vpc" "default" {
 
   name = var.vpc_name
   cidr = var.cidr_ranges

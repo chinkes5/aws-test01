@@ -16,8 +16,9 @@
 #   }
 # }
 
-resource "ec2_instance" "server" {
+resource "aws_instance" "default" {
   name                   = var.ec2_name
+  count                  = var.ec2_count
   description            = var.ec2_description
   ami                    = var.ami_id
   instance_type          = var.instance_type

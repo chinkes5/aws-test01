@@ -2,13 +2,22 @@ variable "userName" {
   type        = string
   description = "Username to associate run to"
 }
+
 variable "region" {
+  type        = string
   description = "which region to work in"
+  default     = "us-west-2"
+}
+
+variable "Env" {
+  type        = string
+  description = "A name of the environment, used in tagging resources"
 }
 variable "cidr_ranges" {
   description = "the cidr ranges for vpc use, we'll use cidrsubnet command to break down the subnets used for different purposes"
   type        = map(any)
 }
+
 variable "vpc" {
   description = "Map of VPC details"
   type = map(object({
@@ -21,7 +30,6 @@ variable "vpc" {
 variable "sg_details" {
   description = "Map of security group details"
   type = map(object({
-    name                    = string
     description             = string
     ingress_cidr_blocks     = list(string)
     ingress_security_groups = list(string)
@@ -39,12 +47,12 @@ variable "sg_details" {
 variable "server_details" {
   description = "Map of all server details"
   type = map(object({
-    description    = string
-    instance_type  = string
-    ami_id         = string
-    ami_key_name   = string
-    IssuePublicIP  = bool
-    security_group = list(string)
-    subnets        = list(string)
+    description     = string
+    instance_type   = string
+    ami_id          = string
+    ami_key_name    = string
+    IssuePublicIP   = bool
+    security_group  = list(string)
+    private_subnets = bool
   }))
 }
