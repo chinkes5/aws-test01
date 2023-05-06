@@ -1,8 +1,10 @@
 module "aws_security_group" {
   source = "./modules/security-group"
 
+  userName = var.userName
+
   for_each       = var.sg_details
-  sg_name        = each.value.name
+  sg_name        = "${each.value.name}-${var.Env}"
   sg_description = each.value.description
   vpc_id         = module.vpc.vpc_id
   ingress_map = {

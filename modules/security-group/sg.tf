@@ -9,6 +9,15 @@ module "security_group" {
 
   #   ingress_cidr_blocks = var.ingress_cidr
   #   ingress_rules       = var.ingress_rules
+  ingress_with_source_security_group_id = [
+    {
+      from_port                = var.ingress_map["from"]
+      to_port                  = var.ingress_map["to"]
+      protocol                 = var.ingress_map["protocol"]
+      description              = var.ingress_map["description"]
+      source_security_group_id = var.ingress_map["security_groups"]
+    },
+  ]
   ingress_with_cidr_blocks = [
     {
       from_port   = var.ingress_map["from"]
@@ -21,6 +30,16 @@ module "security_group" {
 
   #   egress_cidr_blocks = var.egress_cidr
   #   egress_rules       = var.egress_rules
+  egress_with_source_security_group_id = [
+    {
+      from_port                = var.ingress_map["from"]
+      to_port                  = var.ingress_map["to"]
+      protocol                 = var.ingress_map["protocol"]
+      description              = var.ingress_map["description"]
+      source_security_group_id = var.ingress_map["security_groups"]
+    },
+
+  ]
   egress_with_cidr_blocks = [
     {
       from_port   = var.egress_map["from"]

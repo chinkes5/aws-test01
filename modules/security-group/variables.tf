@@ -1,3 +1,8 @@
+variable "userName" {
+  type        = string
+  description = "Username to associate run to"
+}
+
 variable "sg_name" {
   type        = string
   description = "name of the security group being created"
@@ -8,6 +13,10 @@ variable "sg_description" {
   description = "text to identify or otherwise describe this security group"
 }
 
+variable "vpc_id" {
+  type        = string
+  description = "The VPC this security group will be in"
+}
 # variable "ingress_cidr" {
 #   type        = map(string)
 #   description = "map of cidr entries to allow in"

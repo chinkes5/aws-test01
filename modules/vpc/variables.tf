@@ -1,3 +1,8 @@
+variable "userName" {
+  type        = string
+  description = "Username to associate run to"
+}
+
 variable "vpc_name" {
   type        = string
   description = "Name of the VPC"
