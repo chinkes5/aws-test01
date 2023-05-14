@@ -1,4 +1,18 @@
 #!/bin/bash
+plan_action(){
+    tfvarFiles='./*.tfvars'
+    for eachfile in $tfvarFiles
+    do
+        read -r -p "Use this file- $eachfile: [yN]" fileOK
+        if [ $fileOK = 'y' ]; then
+            terraform plan -var-file=$eachfile --out=./plan.out
+            return
+        fi
+    done
+    echo "No TFVAR file selected, just running a plan..."
+    terraform plan --out=./plan.out
+    return
+}
 
 command=i
 while [ $command != "q" ]
@@ -16,17 +30,7 @@ do
             echo "Formatting all files and sub-folders..."
             terraform fmt -recursive;;
         "p" )
-            tfvarFiles='./*.tfvars'
-            for eachfile in $tfvarFiles
-            do
-                read -r -p "Use this file- $eachfile: [yN]" fileOK
-                if [ $fileOK = 'y' ]; then
-                    terraform plan -var-file=$eachfile --out=./plan.out
-                    continue
-                fi
-            done
-            echo "No TFVAR file selected, just running a plan..."
-            terraform plan --out=./plan.out;;
+            plan_action;;
         "a" )
             if test -f "./plan.out"; then
                 echo "*****************************************"

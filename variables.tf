@@ -20,11 +20,11 @@ variable "cidr_ranges" {
 
 variable "vpc" {
   description = "Map of VPC details"
-  type = map(object({
+  type = object({
     azs             = list(string)
     private_subnets = list(string)
     public_subnets  = list(string)
-  }))
+  })
 }
 
 variable "sg_details" {
