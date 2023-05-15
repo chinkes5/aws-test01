@@ -32,3 +32,23 @@ variable "Env" {
   type        = string
   description = "The Environment Tag for this VPC"
 }
+
+variable "enable_nat_gateway" {
+  type = bool
+  description = "Boolean to allow Nat Gateway in this VPC, or not"
+  default = false
+}
+
+variable "enable_vpn_gateway" {
+  type = bool
+  description = "Boolean to allow VPN Gateway in this VPC, or not"
+  default = false
+}
+
+variable "tags" {
+  type        = map(any)
+  description = "Tags to associate to the VPC"
+  default = {
+    Terraform   = "true"
+  }
+}
