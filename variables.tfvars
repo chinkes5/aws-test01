@@ -8,21 +8,18 @@ cidr_ranges = {
   public  = "10.0.200.0/20"
 }
 vpc = {
-  azs = [
-    "us-west-2a",
-    "us-west-2b",
-    "us-west-2c"
-  ]
-  private_subnets = [
-    "10.0.1.0/24",
-    "10.0.2.0/24",
-    "10.0.3.0/24"
-  ]
-  public_subnets = [
-    "10.0.101.0/24",
-    "10.0.102.0/24",
-    "10.0.103.0/24"
-  ]
+  "us-west-2a" = {
+    private_subnet = "10.0.1.0/24"
+    public_subnet  = "10.0.101.0/24"
+  }
+  "us-west-2b" = {
+    private_subnet = "10.0.2.0/24"
+    public_subnet  = "10.0.102.0/24"
+  }
+  "us-west-2c" = {
+    private_subnet = "10.0.3.0/24"
+    public_subnet  = "10.0.103.0/24"
+  }
 }
 sg_details = {
   allow_all_sg = {
@@ -71,30 +68,30 @@ sg_details = {
 
 server_details = {
   bastion_server = {
-    description     = "Bastion server to allow ingress via"
-    instance_type   = "t2.micro"
-    ami_id          = "ami-04e914639d0cca79a"
-    ami_key_name    = "Chinkes-Food_02"
-    IssuePublicIP   = false
-    security_group  = ["allow_all_sg"]
-    private_subnets = true
+    description    = "Bastion server to allow ingress via"
+    instance_type  = "t2.micro"
+    ami_id         = "ami-04e914639d0cca79a"
+    ami_key_name   = "Chinkes-Food_02"
+    IssuePublicIP  = false
+    security_group = ["allow_all_sg"]
+    private_subnet = true
   }
   app_server = {
-    description     = "Application server"
-    instance_type   = "t2.micro"
-    ami_id          = "ami-04e914639d0cca79a"
-    ami_key_name    = "Chinkes-Food_02"
-    IssuePublicIP   = false
-    security_group  = ["allow_internal_ssh"]
-    private_subnets = true
+    description    = "Application server"
+    instance_type  = "t2.micro"
+    ami_id         = "ami-04e914639d0cca79a"
+    ami_key_name   = "Chinkes-Food_02"
+    IssuePublicIP  = false
+    security_group = ["allow_internal_ssh"]
+    private_subnet = true
   }
   web_server = {
-    description     = "Web server"
-    instance_type   = "t2.micro"
-    ami_id          = "ami-04e914639d0cca79a"
-    ami_key_name    = "Chinkes-Food_02"
-    IssuePublicIP   = false
-    security_group  = ["allow_web", "allow_internal_ssh"]
-    private_subnets = false
+    description    = "Web server"
+    instance_type  = "t2.micro"
+    ami_id         = "ami-04e914639d0cca79a"
+    ami_key_name   = "Chinkes-Food_02"
+    IssuePublicIP  = false
+    security_group = ["allow_web", "allow_internal_ssh"]
+    private_subnet = false
   }
 }

@@ -13,18 +13,18 @@ variable "cidr_range" {
   description = "The CIDR range for this VPC"
 }
 
-variable "azs" {
-  type        = map(string)
+variable "az" {
+  type        = string
   description = "Which AZ your VPC will be in"
 }
 
-variable "private_subnets" {
-  type        = map(string)
+variable "private_subnet" {
+  type        = string
   description = "Private Subnet CIDR"
 }
 
-variable "public_subnets" {
-  type        = map(string)
+variable "public_subnet" {
+  type        = string
   description = "Public Subnet CIDR"
 }
 
@@ -34,21 +34,15 @@ variable "Env" {
 }
 
 variable "enable_nat_gateway" {
-  type = bool
+  type        = bool
   description = "Boolean to allow Nat Gateway in this VPC, or not"
-  default = false
-}
-
-variable "enable_vpn_gateway" {
-  type = bool
-  description = "Boolean to allow VPN Gateway in this VPC, or not"
-  default = false
+  default     = true
 }
 
 variable "tags" {
   type        = map(any)
   description = "Tags to associate to the VPC"
   default = {
-    Terraform   = "true"
+    Terraform = "true"
   }
 }

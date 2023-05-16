@@ -19,7 +19,7 @@
 #   # monitoring             = true
 #   vpc_security_group_ids = [each.value.security_group]
 #   # use the correct subnet based on bool status
-#   subnet_id = private_subnets ? vpc.private_subnets : vpc.private_subnets
+#   subnet_id = private_subnet ? vpc.private_subnet : vpc.private_subnet
 
 #   /* tags = {
 #     Terraform   = "true"

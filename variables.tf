@@ -14,17 +14,16 @@ variable "Env" {
   description = "A name of the environment, used in tagging resources"
 }
 variable "cidr_ranges" {
-  description = "the cidr ranges for vpc use, we'll use cidrsubnet command to break down the subnets used for different purposes"
+  description = "the cidr ranges for vpc use, we'll use cidrsubnet command to break down the subnet used for different purposes"
   type        = map(any)
 }
 
 variable "vpc" {
   description = "Map of VPC details"
-  type = object({
-    azs             = list(string)
-    private_subnets = list(string)
-    public_subnets  = list(string)
-  })
+  type = map(object({
+    private_subnet = string
+    public_subnet  = string
+  }))
 }
 
 variable "sg_details" {
@@ -47,12 +46,12 @@ variable "sg_details" {
 variable "server_details" {
   description = "Map of all server details"
   type = map(object({
-    description     = string
-    instance_type   = string
-    ami_id          = string
-    ami_key_name    = string
-    IssuePublicIP   = bool
-    security_group  = list(string)
-    private_subnets = bool
+    description    = string
+    instance_type  = string
+    ami_id         = string
+    ami_key_name   = string
+    IssuePublicIP  = bool
+    security_group = list(string)
+    private_subnet = bool
   }))
 }
