@@ -11,8 +11,8 @@ module "security_group" {
   #   ingress_rules       = var.ingress_rules
   ingress_with_source_security_group_id = [
     {
-      from_port                = var.ingress_map["from"]
-      to_port                  = var.ingress_map["to"]
+      from_port                = var.ingress_map["from_port"]
+      to_port                  = var.ingress_map["to_port"]
       protocol                 = var.ingress_map["protocol"]
       description              = var.ingress_map["description"]
       source_security_group_id = var.ingress_map["security_groups"]
@@ -20,8 +20,8 @@ module "security_group" {
   ]
   ingress_with_cidr_blocks = [
     {
-      from_port   = var.ingress_map["from"]
-      to_port     = var.ingress_map["to"]
+      from_port   = var.ingress_map["from_port"]
+      to_port     = var.ingress_map["to_port"]
       protocol    = var.ingress_map["protocol"]
       description = var.ingress_map["description"]
       cidr_blocks = var.ingress_map["cidr_blocks"]
@@ -32,8 +32,8 @@ module "security_group" {
   #   egress_rules       = var.egress_rules
   egress_with_source_security_group_id = [
     {
-      from_port                = var.ingress_map["from"]
-      to_port                  = var.ingress_map["to"]
+      from_port                = var.ingress_map["from_port"]
+      to_port                  = var.ingress_map["to_port"]
       protocol                 = var.ingress_map["protocol"]
       description              = var.ingress_map["description"]
       source_security_group_id = var.ingress_map["security_groups"]
@@ -42,8 +42,8 @@ module "security_group" {
   ]
   egress_with_cidr_blocks = [
     {
-      from_port   = var.egress_map["from"]
-      to_port     = var.egress_map["to"]
+      from_port   = var.egress_map["from_port"]
+      to_port     = var.egress_map["to_port"]
       protocol    = var.egress_map["protocol"]
       description = var.egress_map["description"]
       cidr_blocks = var.egress_map["cidr_blocks"]

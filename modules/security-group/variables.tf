@@ -17,6 +17,12 @@ variable "vpc_id" {
   type        = string
   description = "The VPC this security group will be in"
 }
+
+variable "Env" {
+  type        = string
+  description = "The Environment Tag for this security group"
+}
+
 # variable "ingress_cidr" {
 #   type        = map(string)
 #   description = "map of cidr entries to allow in"
@@ -30,8 +36,8 @@ variable "vpc_id" {
 variable "ingress_map" {
   description = "map of values to allow ingress, needing the following: to, from, protocol, description, cidr blocks"
   type = map(object({
-    to              = number
-    from            = number
+    to_port         = number
+    from_port       = number
     protocol        = string
     description     = string
     cidr_blocks     = list(string)
@@ -52,8 +58,8 @@ variable "ingress_map" {
 variable "egress_map" {
   description = "map of values to allow egress, needing the following: to, from, protocol, description, cidr blocks"
   type = map(object({
-    to              = number
-    from            = number
+    to_port         = number
+    from_port       = number
     protocol        = string
     description     = string
     cidr_blocks     = list(string)
@@ -78,3 +84,11 @@ variable "egress_map" {
 #     egress_protocol         = string
 #   }))
 # }
+
+variable "tags" {
+  type        = map(any)
+  description = "Tags to associate to the VPC"
+  default = {
+    Terraform = "true"
+  }
+}

@@ -29,12 +29,11 @@ sg_details = {
     ingress_from_port       = 22
     ingress_to_port         = 22
     ingress_protocol        = "tcp"
-    egress_cidr_blocks      = null
+    egress_cidr_blocks      = ["0.0.0.0/0"]
     egress_security_groups  = null
     egress_from_port        = 0
     egress_to_port          = 0
     egress_protocol         = "-1"
-    egress_cidr_blocks      = ["0.0.0.0/0"]
   }
   allow_web = {
     description             = "Allow internet in on port 80"
@@ -43,12 +42,11 @@ sg_details = {
     ingress_from_port       = 80
     ingress_to_port         = 80
     ingress_protocol        = "tcp"
-    egress_cidr_blocks      = null
+    egress_cidr_blocks      = ["0.0.0.0/0"]
     egress_security_groups  = null
     egress_from_port        = 0
     egress_to_port          = 0
     egress_protocol         = "-1"
-    egress_cidr_blocks      = ["0.0.0.0/0"]
   }
   allow_internal_ssh = {
     description             = "Allow internal groups in on port 22"
@@ -57,12 +55,11 @@ sg_details = {
     ingress_from_port       = 22
     ingress_to_port         = 22
     ingress_protocol        = "tcp"
-    egress_cidr_blocks      = null
+    egress_cidr_blocks      = ["0.0.0.0/0"]
     egress_security_groups  = null
     egress_from_port        = 0
     egress_to_port          = 0
     egress_protocol         = "-1"
-    egress_cidr_blocks      = ["0.0.0.0/0"]
   }
 }
 

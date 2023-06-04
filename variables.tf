@@ -13,6 +13,7 @@ variable "Env" {
   type        = string
   description = "A name of the environment, used in tagging resources"
 }
+
 variable "cidr_ranges" {
   description = "the cidr ranges for vpc use, we'll use cidrsubnet command to break down the subnet used for different purposes"
   type        = map(any)
