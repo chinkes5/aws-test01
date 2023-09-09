@@ -1,13 +1,16 @@
 If ((Read-Host "Ready to start [y/n]") -eq "y") {
-    terraform init -input=false
+    # Read the contents of the secrets file
 
+    # Set the value as an environment variable for this session
+    $env:ARM_ACCESS_KEY = $(az keyvault secret show --name TF-stateStorage --vault-name TF-stateStorage --query value -o tsv)
+    terraform init -input=false -backend-config="access_key=$env:ARM_ACCESS_KEY"
     $varFile = Read-Host "Path\Name of var-file, or blank if none"
     do {
-        $response = Read-Host “Press I, P, A, D, or Q”
-        switch ($response) {
+        $response = Read-Host “Press I, F, V, P, A, D, or Q”
+        switch ($response.ToLower()) {
             "i" {
                 Write-Output "Initiallizing (again?)..."
-                terraform init
+                terraform init -backend-config="access_key=$env:ARM_ACCESS_KEY"
             }
             "p" {
                 Write-Output "Running plan..."
@@ -23,8 +26,11 @@ If ((Read-Host "Ready to start [y/n]") -eq "y") {
                 if ([string]::IsNullOrEmpty($varFile)) {
                     terraform apply "plan.out"
                 }
-                else {
+                elseif (Test-Path $varFile -PathType Leaf) {
                     terraform apply -var-file $varFile "plan.out"
+                }
+                else {
+                    terraform apply -auto-approve
                 }
             }
             "d" {
@@ -43,6 +49,10 @@ If ((Read-Host "Ready to start [y/n]") -eq "y") {
             "v" {
                 Write-Output "Validating Terraform"
                 terraform validate
+            }
+            "f" {
+                Write-Output "Validating Terraform"
+                terraform fmt
             }
             "q" {
                 Write-Output "All done! `u{1f60e}"
